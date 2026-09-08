@@ -259,9 +259,9 @@ def assistant_api():
         }), 500
 
 
-if __name__ == "__main__":
-    init_db()
+init_db()
 
+if __name__ == "__main__":
     app.run(
         debug=True,
         host="127.0.0.1",
