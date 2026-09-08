@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>FamilyCare AI</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>🏥 FamilyCare AI</h2>
+
+    <div>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/family">Family</a>
+
+        <a href="/appointments">
+            Appointments
+        </a>
+
+        <a href="/assistant">
+            AI Assistant
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="chat-container">
+
+    <h1>🤖 FamilyCare AI Agent</h1>
+
+    <p>
+        Your intelligent family healthcare assistant
+    </p>
+
+
+    <div id="chat">
+
+        <div class="bot">
+
+            Hello! 👋
+
+            <br><br>
+
+            I am FamilyCare AI.
+
+            <br>
+
+            I can manage family members,
+            appointments and reminders.
+
+        </div>
+
+    </div>
+
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Ask FamilyCare AI..."
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+
+    <div class="agent-status">
+
+        <h3>🧠 Agent Activity</h3>
+
+        <p>
+            <b>Intent:</b>
+            <span id="intent">Waiting...</span>
+        </p>
+
+        <p>
+            <b>Plan:</b>
+            <span id="plan">Waiting...</span>
+        </p>
+
+        <p>
+            <b>Tool:</b>
+            <span id="tool">No tool required</span>
+        </p>
+
+    </div>
+
+</div>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+
+</html>

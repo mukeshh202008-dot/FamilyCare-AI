@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family - FamilyCare AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<nav>
+    <h2>🏥 FamilyCare AI</h2>
+
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/family">Family</a>
+        <a href="/appointments">Appointments</a>
+        <a href="/assistant">AI Assistant</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>👨‍👩‍👧‍👦 Family Members</h1>
+
+    <div class="form-card">
+
+        <h2>Add Family Member</h2>
+
+        <form method="POST" class="care-form">
+
+            <div class="form-grid">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="number" name="age" placeholder="Age" required>
+                <input type="text" name="relation" placeholder="Relation" required>
+                <input type="text" name="phone" placeholder="Phone">
+                <input type="text" name="blood_group" placeholder="Blood group">
+                <input type="text" name="allergies" placeholder="Allergies">
+                <input type="text" name="conditions" placeholder="Medical conditions">
+                <input type="text" name="emergency_contact" placeholder="Emergency contact">
+            </div>
+
+            <textarea name="notes" rows="3" placeholder="Care notes, meds, or special instructions"></textarea>
+
+            <button type="submit">Add Member</button>
+
+        </form>
+
+    </div>
+
+    <h2>Family List</h2>
+
+    <div class="list">
+
+        {% for member in members %}
+
+        <div class="item">
+
+            <h3>{{ member["name"] }}</h3>
+
+            <p><strong>Age:</strong> {{ member["age"] }}</p>
+            <p><strong>Relation:</strong> {{ member["relation"] }}</p>
+            <p><strong>Phone:</strong> {{ member["phone"] or 'Not provided' }}</p>
+            <p><strong>Blood group:</strong> {{ member["blood_group"] or 'Not provided' }}</p>
+            <p><strong>Allergies:</strong> {{ member["allergies"] or 'None recorded' }}</p>
+            <p><strong>Conditions:</strong> {{ member["conditions"] or 'None recorded' }}</p>
+            <p><strong>Emergency:</strong> {{ member["emergency_contact"] or 'Not provided' }}</p>
+            <p><strong>Notes:</strong> {{ member["notes"] or 'No notes' }}</p>
+
+        </div>
+
+        {% else %}
+
+        <p>No family members added yet.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

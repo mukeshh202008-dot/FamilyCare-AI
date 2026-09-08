@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>FamilyCare AI - Dashboard</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        🏥 FamilyCare AI
+    </div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/family">Family</a>
+        <a href="/appointments">Appointments</a>
+        <a href="/assistant">AI Assistant</a>
+    </div>
+
+</nav>
+
+
+<div class="dashboard">
+
+    <div class="welcome">
+
+        <div>
+            <h1>Family Health Dashboard 👋</h1>
+
+            <p>
+                Manage your family's healthcare in one place.
+            </p>
+        </div>
+
+        <a href="/assistant" class="ai-button">
+            🤖 Ask FamilyCare AI
+        </a>
+
+    </div>
+
+
+    <!-- STAT CARDS -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="icon">👨‍👩‍👧‍👦</div>
+
+            <div>
+                <h2>{{ total_members or family|length }}</h2>
+                <p>Family Members</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">📅</div>
+
+            <div>
+                <h2>{{ upcoming_appointments or appointments|length }}</h2>
+                <p>Upcoming Visits</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">🔔</div>
+
+            <div>
+                <h2>{{ active_reminders or reminders|length }}</h2>
+                <p>Active Reminders</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">🤖</div>
+
+            <div>
+                <h2>AI</h2>
+                <p>Assistant Active</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN GRID -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- FAMILY -->
+
+        <div class="dashboard-card">
+
+            <div class="card-title">
+
+                <h2>👨‍👩‍👧‍👦 Family Members</h2>
+
+                <a href="/family">View All</a>
+
+            </div>
+
+
+            {% if family %}
+
+                {% for member in family[:5] %}
+
+                <div class="member-row">
+
+                    <div class="avatar">
+                        {{ member["name"][0]|upper }}
+                    </div>
+
+                    <div>
+
+                        <strong>{{ member["name"] }}</strong>
+
+                        <p>
+                            {{ member["relation"] }} • Age {{ member["age"] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No family members added yet.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- APPOINTMENTS -->
+
+        <div class="dashboard-card">
+
+            <div class="card-title">
+
+                <h2>📅 Appointments</h2>
+
+                <a href="/appointments">View All</a>
+
+            </div>
+
+
+            {% if appointments %}
+
+                {% for appointment in appointments[:5] %}
+
+                <div class="appointment-row">
+
+                    <div class="date-box">
+
+                        <strong>{{ appointment["date"][-2:] }}</strong>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            {{ appointment["appointment"] }}
+                        </strong>
+
+                        <p>
+                            {{ appointment["member"] }}
+                            • {{ appointment["time"] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No appointments scheduled.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- REMINDERS -->
+
+    <div class="dashboard-card reminders-card">
+
+        <div class="card-title">
+
+            <h2>🔔 Health Reminders</h2>
+
+        </div>
+
+
+        {% if reminders %}
+
+            {% for reminder in reminders[:5] %}
+
+            <div class="reminder">
+
+                <span>🔔</span>
+
+                <div>
+
+                    <strong>
+                        {{ reminder[2] }}
+                    </strong>
+
+                    <p>
+                        {{ reminder[1] }}
+                        • {{ reminder[4] }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+                No reminders yet.
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+
+    <!-- AI AGENT -->
+
+    <div class="agent-card">
+
+        <div class="agent-icon">
+            🧠
+        </div>
+
+        <div>
+
+            <h2>FamilyCare AI Agent</h2>
+
+            <p>
+                Your intelligent healthcare management assistant
+                can understand requests and perform actions automatically.
+            </p>
+
+        </div>
+
+        <a href="/assistant">
+            Start AI →
+        </a>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
